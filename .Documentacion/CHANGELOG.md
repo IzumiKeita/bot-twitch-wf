@@ -8,7 +8,7 @@
 - Actualización de Documentación:
   - Se actualizó `README.md` y `.env.example` para reflejar el nuevo sistema de autenticación, eliminando referencias a la herramienta descontinuada `twitchapps.com/tmi`.
   - Se documentó el uso del generador de tokens integrado (Opción 2 del menú).
-  - Se limpió el archivo `.env.example` eliminando configuraciones de IA no utilizadas (LM Studio) para evitar confusiones.
+
 
 ## 2026-03-08
 - Mejora en `bot.py`:
