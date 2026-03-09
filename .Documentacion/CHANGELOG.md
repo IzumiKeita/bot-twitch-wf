@@ -5,6 +5,9 @@
   - Creación de `.gitignore` para excluir archivos sensibles y temporales.
   - Estandarización de `requirements.txt` con versiones fijas.
   - Inicialización del control de versiones Git.
+- Actualización de Documentación:
+  - Se actualizó `README.md` y `.env.example` para reflejar el nuevo sistema de autenticación, eliminando referencias a la herramienta descontinuada `twitchapps.com/tmi`.
+  - Se documentó el uso del generador de tokens integrado (Opción 2 del menú).
 
 ## 2026-03-08
 - Mejora en `bot.py`:

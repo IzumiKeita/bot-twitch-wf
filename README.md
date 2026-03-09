@@ -45,18 +45,40 @@ Para que el bot se conecte a tu chat de Twitch, necesitas configurarlo.
 3. Abre el archivo `.env` con el Bloc de Notas.
 4. Rellena los datos:
 
-   - **TWITCH_TOKEN**: Necesitas un token de acceso (es como una contraseña para bots).
-     - Ve a [https://twitchapps.com/tmi/](https://twitchapps.com/tmi/)
-     - Conecta tu cuenta de Twitch (la del bot o la tuya).
-     - Copia el texto que empieza por `oauth:...` y pégalo después del `=`.
-   
-   - **TWITCH_USERNAME**: El nombre de usuario de la cuenta de Twitch que usará el bot (puede ser tu propia cuenta o una cuenta secundaria para el bot).
-   
-   - **TARGET_CHANNEL**: El nombre de tu canal de Twitch (donde quieres que el bot hable). Escríbelo en minúsculas (sin el `#`, el bot lo pone solo).
+   Existen dos formas de obtener tu token:
 
-   **Ejemplo de cómo debe quedar el archivo .env:**
+   **Opción A: Método Automático (Recomendado)**
+   Este método usa el generador incluido en el bot. Es más seguro y no dependes de terceros.
+   1. Ve a la [Consola de Desarrolladores de Twitch](https://dev.twitch.tv/console).
+   2. Inicia sesión y pulsa en **"Register Your Application"**.
+   3. Rellena los datos:
+      - **Name**: Un nombre único (ej: `MiBotWarframe_TuNombre`).
+      - **OAuth Redirect URLs**: Escribe `http://localhost:3000` y dale a "Add".
+      - **Category**: Selecciona "Chat Bot".
+      - Pulsa "Create".
+   4. En tu nueva aplicación, pulsa "Manage".
+   5. Copia el **Client ID** y pégalo en tu archivo `.env`.
+   6. Pulsa en "New Secret", acepta, copia el **Client Secret** y pégalo en tu `.env`.
+   7. Guarda el archivo `.env`.
+   8. Ejecuta `start_bot.bat` y selecciona la **Opción 2**. ¡El token se guardará solo!
+
+   **Opción B: Método Rápido (Herramienta de Terceros)**
+   Si no quieres crear una aplicación, puedes usar un generador externo confiable.
+   1. Ve a [Twitch Token Generator](https://twitchtokengenerator.com/).
+   2. Selecciona "Custom Scope Token".
+   3. Activa las casillas `chat:read` y `chat:edit`.
+   4. Genera el token, autoriza y copia el "Access Token".
+   5. Pégalo en tu `.env` donde dice `TWITCH_TOKEN=oauth:tu_token_aqui`.
+
+   **Ejemplo de cómo debe quedar el archivo .env (Opción A):**
    ```env
-   TWITCH_TOKEN=oauth:a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5
+   # Credenciales de la App (para el generador automático)
+   TWITCH_CLIENT_ID=tu_cliente_id_largo
+   TWITCH_CLIENT_SECRET=tu_secreto_largo
+   
+   # El bot rellenará esto solo tras usar la Opción 2 del menú
+   TWITCH_TOKEN=
+   
    TWITCH_USERNAME=MiBotDeWarframe
    TARGET_CHANNEL=mi_canal_de_twitch
    ```
@@ -118,7 +140,9 @@ Aquí tienes todos los comandos que pueden usar tus espectadores:
   - Revisa que el archivo `.env` esté bien escrito y guardado.
 
 - **Error "Login authentication failed":**
-  - Tu token de Twitch ha caducado o está mal copiado. Vuelve a generar uno en [twitchapps.com/tmi](https://twitchapps.com/tmi/) y actualiza el archivo `.env`.
+  - Tu token de Twitch ha caducado o está mal copiado. 
+  - Si usas el **Método Automático**, ejecuta `start_bot.bat`, elige la opción 2 y vuelve a autorizar.
+  - Si usas el **Método Rápido**, genera uno nuevo en [Twitch Token Generator](https://twitchtokengenerator.com/) y actualiza el `.env`.
 
 - **El bot no responde en el chat:**
   - Asegúrate de que el `TARGET_CHANNEL` sea correcto (el nombre de tu canal).
